@@ -31,10 +31,10 @@ class Hand a where
 
 -- Implement Hand for Card, where play returns true if the list contains the Ace of Spades
 instance Hand Card where
-    play c = undefined
+    play c = (Card Ace Spades) `elem` c
 
 -- Create a new Coin type
---data Coin =
+data Coin = Heads | Tails deriving (Show)
 
 -- Implement Hand for Coin, where play returns true if there are ten heads in a row in the list
 --instance Hand Coin where
