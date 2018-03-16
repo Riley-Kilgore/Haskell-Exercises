@@ -34,10 +34,22 @@ instance Hand Card where
     play c = (Card Ace Spades) `elem` c
 
 -- Create a new Coin type
-data Coin = Heads | Tails deriving (Show)
+data Coin = Heads | Tails deriving (Show, Eq)
 
 -- Implement Hand for Coin, where play returns true if there are ten heads in a row in the list
---instance Hand Coin where
-	--play c =  undefined
+instance Hand Coin where
+	play c = play' c 10
+
+play' :: [Coin] -> Int -> Bool
+play' [] _ = False
+play' [x] n
+      | n == 1 = if x == Heads then True else False
+      | otherwise = False
+play' (x:xs) 1
+      | x == Heads = True
+      | otherwise = False
+play' (x:xs) n
+      | x == Heads = play' xs (n-1)
+      | otherwise = play' xs 10
 
 -- Have a play with implementing Hand for some other types, for instance Int and Bool
