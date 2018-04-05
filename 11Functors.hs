@@ -11,7 +11,8 @@ instance Functor List where
 
 -- Write a function which appends one list on to another
 combineLists:: List a -> List a -> List a
-combineLists a b = undefined
+combineLists Empty b = b
+combineLists a Empty = a
 
 -- Make our list a Monoid
 
