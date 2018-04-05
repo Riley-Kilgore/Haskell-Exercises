@@ -5,6 +5,9 @@ import Data.Monoid
 data List a = Empty | Value a (List a) deriving (Show)
 
 -- Make the list a Functor
+instance Functor List where
+  fmap f Empty = Empty
+  fmap f (Value val (tail)) = ( Value (f val) (fmap f tail))
 
 -- Write a function which appends one list on to another
 combineLists:: List a -> List a -> List a
