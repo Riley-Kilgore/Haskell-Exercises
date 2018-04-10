@@ -9,6 +9,12 @@ instance Functor List where
   fmap f Empty = Empty
   fmap f (Value val (tail)) = ( Value (f val) (fmap f tail))
 
+head':: List a -> a
+head' (Value a (tail)) = a
+
+tail':: List a -> List a
+tail' (Value a (tail)) = tail
+
 -- Write a function which appends one list on to another
 combineLists:: List a -> List a -> List a
 combineLists Empty b = b
